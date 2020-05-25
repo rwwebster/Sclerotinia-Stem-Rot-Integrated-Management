@@ -1,0 +1,131 @@
+/*2019 Michigan Trial*/
+    /*DIX*/
+            /*Row Spacing Main Effect*/	
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row/ilink pdiff;
+                    %mult(trt=row, alpha=0.05);
+                    run;
+            /*Planting Population Main Effect*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop/ilink pdiff;
+                    %mult(trt=pop, alpha=0.05);
+                    run;
+            /*Fungicide Application Main Effect*/
+                    Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans fung/ilink pdiff;
+                    %mult(trt=fung, alpha=0.05);
+                    run;
+            /*Row Spacing and Planting Population Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*pop/ilink pdiff;
+                    %mult(trt=pop, by=row, alpha=0.05);
+                    run;
+            /*Row Spacing and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*fung/ilink pdiff;
+                    %mult(trt=fung, by=row, alpha=0.05);
+                    run;
+            /*Planting Population and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, alpha=0.05);
+                    run;
+            /*Row Spacing, Planting Population, and Fungicide Applicaton Three-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model DIX = Row|Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, by2=row, alpha=0.05);
+                    run;
+
+    /*Yield*/
+            /*Row Spacing Main Effect*/	
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row/ilink pdiff;
+                    %mult(trt=row, alpha=0.05);
+                    run;
+            /*Planting Population Main Effect*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop/ilink pdiff;
+                    %mult(trt=pop, alpha=0.05);
+                    run;
+            /*Fungicide Application Main Effect*/
+                    Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans fung/ilink pdiff;
+                    %mult(trt=fung, alpha=0.05);
+                    run;
+            /*Row Spacing and Planting Population Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*pop/ilink pdiff;
+                    %mult(trt=pop, by=row, alpha=0.05);
+                    run;
+            /*Row Spacing and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*fung/ilink pdiff;
+                    %mult(trt=fung, by=row, alpha=0.05);
+                    run;
+            /*Planting Population and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, alpha=0.05);
+                    run;
+            /*Row Spacing, Planting Population, and Fungicide Applicaton Three-Way Interaction*/
+                Proc glimmix data=MI2019 plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Row Pop Fung;
+                    model Ykg = Row|Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans row*pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, by2=row, alpha=0.05);
+                    run;
+        
