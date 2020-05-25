@@ -1,0 +1,89 @@
+/*Partially Integrated Trials*/
+    /*Disease Present*/
+        /*DIX*/
+            /*Planting Population Main Effect*/
+                Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model DIX = Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop/ilink pdiff;
+                    %mult(trt=pop, alpha=0.05);
+                    run;
+            /*Fungicide Application Main Effect*/
+                    Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model DIX = Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans fung/ilink pdiff;
+                    %mult(trt=fung, alpha=0.05);
+                    run;
+            /*Planting Population and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model DIX = Pop|Fung/dist=lognormal ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, alpha=0.05);
+                    run;
+ 
+        /*Yield*/
+            /*Planting Population Main Effect*/
+                Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop/ilink pdiff;
+                    %mult(trt=pop, alpha=0.05);
+                    run;
+            /*Fungicide Application Main Effect*/
+                    Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans fung/ilink pdiff;
+                    %mult(trt=fung, alpha=0.05);
+                    run;
+            /*Planting Population and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=PartDisPres plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, alpha=0.05);
+                    run;
+  
+    /*Disease Absent*/
+        /*Yield*/
+            /*Planting Population Main Effect*/
+                Proc glimmix data=PartDisAbs plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop/ilink pdiff;
+                    %mult(trt=pop, alpha=0.05);
+                    run;
+            /*Fungicide Application Main Effect*/
+                    Proc glimmix data=PartDisAbs plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans fung/ilink pdiff;
+                    %mult(trt=fung, alpha=0.05);
+                    run;
+            /*Planting Population and Fungicide Applicaton Two-Way Interaction*/
+                Proc glimmix data=PartDisAbs plots=studentpanel nobound;
+                    ods output lsmeans=lsmeans diffs=diffs;
+                    class Env Rep Pop Fung;
+                    model Ykg = Pop|Fung/dist=n ddfm=satterthwaite;
+                    Random Env Rep(Env);
+                    lsmeans pop*fung/ilink pdiff;
+                    %mult(trt=fung, by=pop, alpha=0.05);
+                    run;
